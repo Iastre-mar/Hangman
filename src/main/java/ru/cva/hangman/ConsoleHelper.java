@@ -14,7 +14,7 @@ public class ConsoleHelper {
     }
 
     public static int readInt() {
-        return scanner.nextInt();
+        return Integer.parseInt(scanner.nextLine());
     }
 
     public static void writeMessage(String message) {
