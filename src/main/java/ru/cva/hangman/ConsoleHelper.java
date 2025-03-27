@@ -7,19 +7,21 @@ import java.util.Scanner;
  *  как в консоли, так и через другие интерфейсы
  */
 public class ConsoleHelper {
-    private final Scanner scanner = new Scanner(System.in);
+    private static final Scanner scanner = new Scanner(System.in);
 
-    public String readString() {
+    public static String readString() {
         return scanner.nextLine();
     }
 
-    public int readInt() {
+    public static int readInt() {
         return scanner.nextInt();
     }
 
-    public void writeMessage(String message) {
+    public static void writeMessage(String message) {
         System.out.println(message);
     }
+
+    private ConsoleHelper() {}
 
 
 }
