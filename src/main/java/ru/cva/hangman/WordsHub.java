@@ -5,21 +5,21 @@ import java.util.List;
 import java.util.Random;
 
 public class WordsHub {
-    private static final List<String> words = new ArrayList<>();
+    private static final List<Word> words = new ArrayList<>();
     private static final Random random = new Random();
 
     static {
-        words.add("Numbat");
-        words.add("Jellyfish");
-        words.add("Fossa");
-        words.add("Beaver");
+        words.add(new Word("Numbat"));
+        words.add(new Word("Jellyfish"));
+        words.add(new Word("Fossa"));
+        words.add(new Word("Beaver"));
     }
 
     private WordsHub() {
 
     }
 
-    public static String getWord() {
+    public static Word getWord() {
         return words.get(random.nextInt(words.size()));
     }
 
