@@ -22,7 +22,8 @@ public class Word {
     public String getMask() {
         return hiddenWord.chars()
                          .mapToObj(i -> (char) i)
-                         .map(c -> charactersGuessed.get(c) ? c.toString() : "*")
+                         .map(c -> charactersGuessed.get(
+                                 c) ? c.toString() : "*")
                          .collect(Collectors.joining());
     }
 
@@ -41,6 +42,14 @@ public class Word {
 
     public String getHiddenWord() {
         return hiddenWord;
+    }
+
+    public boolean checkExistenceNotGuessedLetters() {
+        return !charactersGuessed.values()
+                                .stream()
+                                .filter(b -> b == false)
+                                .toList()
+                                .isEmpty();
     }
 
     private void openLetter(char letter) {
