@@ -26,7 +26,7 @@ public class HangmanEngine implements Engine {
     public void setUpGame() {
         lifeCountLeft = 5; // хардкод пока
         wordsHub = new WordsHub(); // Хардкод
-        currentWord =  wordsHub.getWord();
+        currentWord = wordsHub.getWord();
 
         charactersGuessed = new HashMap<>();
         currentWord.getHiddenWord()
@@ -41,10 +41,11 @@ public class HangmanEngine implements Engine {
     @Override
     public void playRound() {
         ConsoleHelper.writeMessage("Я загадал слово", getMask());
+        ConsoleHelper.writeMessage("Слово на", currentWord.lang(), "языке");
         ConsoleHelper.writeMessage("Попробуй угадать букву:");
 
 
-        while (checkExistenceNotGuessedLetters() && lifeCountLeft >= 0) {
+        while (checkExistenceNotGuessedLetters() && lifeCountLeft > 0) {
 
             char userInput = ConsoleHelper.readChar();
 

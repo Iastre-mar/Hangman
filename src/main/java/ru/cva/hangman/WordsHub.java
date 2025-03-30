@@ -5,8 +5,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.URL;
-import java.nio.file.Files;
-import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -37,8 +35,7 @@ public class WordsHub {
         URL wordsLoc = WordsHub.class.getClassLoader()
                                      .getResource(this.wordsPathInResources);
 
-        try (InputStream fis = Files.newInputStream(
-                Path.of(wordsLoc.getPath()));
+        try (InputStream fis = wordsLoc.openStream();
              InputStreamReader isr = new InputStreamReader(fis);
              BufferedReader br = new BufferedReader(isr);
         ) {
@@ -50,6 +47,7 @@ public class WordsHub {
         } catch (NullPointerException npe) {
             ConsoleHelper.writeMessage("Источника слов для загрузки",
                                        "Не существует");
+            throw new RuntimeException(npe);
         }
     }
 

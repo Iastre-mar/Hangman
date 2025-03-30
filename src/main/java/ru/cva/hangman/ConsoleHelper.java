@@ -1,6 +1,5 @@
 package ru.cva.hangman;
 
-import java.util.Arrays;
 import java.util.Scanner;
 
 /**
@@ -43,8 +42,9 @@ public class ConsoleHelper {
      *                будет выведен через пробел
      */
     public static void writeMessage(String... message) {
-        Arrays.stream(message)
-              .forEach(string -> System.out.print(string + " "));
+        for (String string : message) {
+            System.out.print(string + " ");
+        }
         System.out.println();
     }
 
