@@ -8,6 +8,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 public class HangmanEngine implements Engine {
+    private WordsHub wordsHub;
     private Word currentWord;
     private int lifeCountLeft;
 
@@ -24,7 +25,8 @@ public class HangmanEngine implements Engine {
     @Override
     public void setUpGame() {
         lifeCountLeft = 5; // хардкод пока
-        currentWord = WordsHub.getWord();
+        wordsHub = new WordsHub(); // Хардкод
+        currentWord =  wordsHub.getWord();
 
         charactersGuessed = new HashMap<>();
         currentWord.getHiddenWord()
@@ -42,7 +44,7 @@ public class HangmanEngine implements Engine {
         ConsoleHelper.writeMessage("Попробуй угадать букву:");
 
 
-        while (checkExistenceNotGuessedLetters() || lifeCountLeft >= 0) {
+        while (checkExistenceNotGuessedLetters() && lifeCountLeft >= 0) {
 
             char userInput = ConsoleHelper.readChar();
 
