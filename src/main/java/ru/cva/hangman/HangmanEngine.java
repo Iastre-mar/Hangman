@@ -8,7 +8,6 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 public class HangmanEngine implements Engine {
-    private boolean isUserWin;
     private Word currentWord;
     private int lifeCountLeft;
 
@@ -24,7 +23,6 @@ public class HangmanEngine implements Engine {
      */
     @Override
     public void setUpGame() {
-        isUserWin = false;
         lifeCountLeft = 5; // хардкод пока
         currentWord = WordsHub.getWord();
 
@@ -36,7 +34,6 @@ public class HangmanEngine implements Engine {
 
         enteredChars = new HashSet<>();
 
-
     }
 
     @Override
@@ -45,12 +42,11 @@ public class HangmanEngine implements Engine {
         ConsoleHelper.writeMessage("Попробуй угадать букву:");
 
 
-        while (checkExistenceNotGuessedLetters()) {
+        while (checkExistenceNotGuessedLetters() || lifeCountLeft >= 0) {
 
             char userInput = ConsoleHelper.readChar();
 
             if (checkLetter(userInput)) {
-                //isUserWin = true;
                 ConsoleHelper.writeMessage(
                         "Поздравляю! Ты угадал букву верно");
             } else {
@@ -58,10 +54,6 @@ public class HangmanEngine implements Engine {
                 ConsoleHelper.writeMessage("Сожалею, ты не угадал букву,",
                                            "количество оставшихся попыток:",
                                            String.valueOf(lifeCountLeft));
-            }
-
-            if (lifeCountLeft <= 0) {
-                break;
             }
 
             ConsoleHelper.writeMessage("Слово:", getMask());
@@ -75,7 +67,7 @@ public class HangmanEngine implements Engine {
 
     @Override
     public boolean isUserAWinner() {
-        return isUserWin;
+        return !checkExistenceNotGuessedLetters();
     }
 
 
@@ -114,7 +106,6 @@ public class HangmanEngine implements Engine {
     }
 
     /**
-     * @param letter
      * @return 1 в случае если буква вводится в первый раз
      * или 0 если уже была введена ранее
      */
