@@ -13,6 +13,8 @@ public class HangmanEngine implements Engine {
     // Все буквы хранятся внутри в нижнем регистре
     private  Map<Character, Boolean> charactersGuessed;
 
+    //private Set<Character> typed
+
 
 
     /**
@@ -35,7 +37,7 @@ public class HangmanEngine implements Engine {
 
     @Override
     public void playRound() {
-        ConsoleHelper.writeMessage("Я загадал слово " + getMask());
+        ConsoleHelper.writeMessage("Я загадал слово ", getMask());
         ConsoleHelper.writeMessage("Попробуй угадать букву:");
 
 
@@ -50,20 +52,20 @@ public class HangmanEngine implements Engine {
             } else {
                 lifeCountLeft--;
                 ConsoleHelper.writeMessage(
-                        "Сожалею, ты не угадал букву," +
-                        " количество оставшихся попыток: " +
-                        lifeCountLeft);
+                        "Сожалею, ты не угадал букву,",
+                        " количество оставшихся попыток: ",
+                        String.valueOf(lifeCountLeft));
             }
 
             if (lifeCountLeft <= 0){
                 break;
             }
 
-            ConsoleHelper.writeMessage("Слово:\n" + getMask());
+            ConsoleHelper.writeMessage("Слово:", getMask());
         }
 
         ConsoleHelper.writeMessage(
-                "Полное слово: " + currentWord.getHiddenWord());
+                "Полное слово: ", currentWord.getHiddenWord());
 
 
         ConsoleHelper.writeMessage("Очередной увлекательный кон завершен");

@@ -26,7 +26,7 @@ public class Game {
     }
 
     private boolean isGameEnded() {
-        ConsoleHelper.writeMessage("Введите 0 если хотите закончить игру" +
+        ConsoleHelper.writeMessage("Введите 0 если хотите закончить игру",
                                    " или любую другую цифру чтобы продолжить");
         return ConsoleHelper.readInt() == 0;
     }
