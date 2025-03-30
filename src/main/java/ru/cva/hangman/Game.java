@@ -20,6 +20,7 @@ public class Game {
         while (!game.isGameEnded) {
             game.engine.setUpGame();
             game.engine.playRound();
+            game.isUserWinner();
             game.isGameEnded = game.isGameEnded();
         }
 
@@ -27,8 +28,17 @@ public class Game {
 
     private boolean isGameEnded() {
         ConsoleHelper.writeMessage("Введите 0 если хотите закончить игру",
-                                   " или любую другую цифру чтобы продолжить");
+                                   "или любую другую цифру чтобы продолжить");
         return ConsoleHelper.readInt() == 0;
+    }
+
+    private void isUserWinner() {
+        boolean res = this.engine.isUserAWinner();
+        if (res) {
+            ConsoleHelper.writeMessage("Пользователь победил в игре!");
+        } else {
+            ConsoleHelper.writeMessage("Пользователь проиграл");
+        }
     }
 
 
