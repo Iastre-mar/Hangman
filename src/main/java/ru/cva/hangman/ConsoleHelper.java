@@ -17,7 +17,24 @@ public class ConsoleHelper {
     }
 
     public static int readInt() {
-        return Integer.parseInt(scanner.nextLine());
+        while (true) {
+            try {
+                return Integer.parseInt(scanner.nextLine());
+            } catch (NumberFormatException e) {
+                writeMessage("Ожидался ввод числа, попробуйте еще раз");
+            }
+        }
+
+    }
+
+    public static char readChar() {
+        while (true) {
+            String userInput = scanner.nextLine();
+            if (userInput.length() == 1) {
+                return userInput.charAt(0);
+            }
+            writeMessage("Ожидался только 1 символ, повторите ввод");
+        }
     }
 
     public static void writeMessage(String message) {

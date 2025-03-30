@@ -27,11 +27,7 @@ public class Word {
                          .collect(Collectors.joining());
     }
 
-    public boolean checkLetter(String string) {
-        if (string.length() != 1) {
-            throw new IllegalArgumentException();
-        }
-        char letter = string.charAt(0);
+    public boolean checkLetter(char letter) {
         boolean res = charactersGuessed.containsKey(letter);
 
         if (res) {

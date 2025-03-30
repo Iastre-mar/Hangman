@@ -45,7 +45,7 @@ public class Game {
 
         while (currentWord.checkExistenceNotGuessedLetters()) {
 
-            String userInput = ConsoleHelper.readString();
+            char userInput = ConsoleHelper.readChar();
 
             if (currentWord.checkLetter(userInput)) {
                 //isUserWin = true;
