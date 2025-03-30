@@ -4,7 +4,7 @@ package ru.cva.hangman;
 // N.B. Должен быть способен содержать любую игру, текстовую ли или графическую
 // Необходимо упростить в будущем
 public class Game {
-    private Engine engine;
+    private final Engine engine;
     private boolean isGameEnded;
 
 
