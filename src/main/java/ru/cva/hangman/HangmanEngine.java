@@ -40,24 +40,11 @@ public class HangmanEngine implements Engine {
 
     @Override
     public void playRound() {
-        ConsoleHelper.writeMessage("Я загадал слово", getMask());
-        ConsoleHelper.writeMessage("Слово на", currentWord.lang(), "языке");
-        ConsoleHelper.writeMessage("Попробуй угадать букву:");
+        printGreeting();
 
+        while (checkShallGameMoveOn()) {
 
-        while (checkExistenceNotGuessedLetters() && lifeCountLeft > 0) {
-
-            char userInput = ConsoleHelper.readChar();
-
-            if (checkLetter(userInput)) {
-                ConsoleHelper.writeMessage(
-                        "Поздравляю! Ты угадал букву верно");
-            } else {
-                lifeCountLeft -= checkCharAlreadyEntered(userInput);
-                ConsoleHelper.writeMessage("Сожалею, ты не угадал букву,",
-                                           "количество оставшихся попыток:",
-                                           String.valueOf(lifeCountLeft));
-            }
+            guessLetter();
 
             ConsoleHelper.writeMessage("Слово:", getMask());
         }
@@ -71,6 +58,32 @@ public class HangmanEngine implements Engine {
     @Override
     public boolean isUserAWinner() {
         return !checkExistenceNotGuessedLetters();
+    }
+
+    private boolean checkShallGameMoveOn(){
+        return checkExistenceNotGuessedLetters() && lifeCountLeft > 0;
+    }
+
+    private void printGreeting(){
+        ConsoleHelper.writeMessage("Я загадал слово", getMask());
+        ConsoleHelper.writeMessage("Слово на", currentWord.lang(), "языке");
+        ConsoleHelper.writeMessage("Попробуй угадать букву:");
+    }
+
+    private void guessLetter(){
+
+        char userInput = ConsoleHelper.readChar();
+
+        if (checkLetter(userInput)) {
+            ConsoleHelper.writeMessage(
+                    "Поздравляю! Ты угадал букву верно");
+        } else {
+            lifeCountLeft -= checkCharAlreadyEntered(userInput);
+            ConsoleHelper.writeMessage("Сожалею, ты не угадал букву,",
+                                       "количество оставшихся попыток:",
+                                       String.valueOf(lifeCountLeft));
+        }
+
     }
 
 
